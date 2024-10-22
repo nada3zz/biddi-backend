@@ -34,14 +34,17 @@ export class User {
   @Prop({ type: Boolean, default: false })
   isDeleted: boolean;
 
-  @Prop({ type: Date })
-  passwordChangedAt?: Date;
-
   @Prop({ type: String })
   address?: string;
 
-  @Prop({ type: Types.ObjectId, ref: 'Image', autopopulate: true })
-  avatar: Types.ObjectId;
+  @Prop({ type: String})
+  avatar?: string
+
+  @Prop({ type: Types.ObjectId, ref: 'Cart', autopopulate: true })
+  carts: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Vendor', autopopulate: true })
+  vendor: Types.ObjectId;
 }
 
 type UserDocument = User & Document;

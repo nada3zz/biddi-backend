@@ -5,6 +5,5 @@ export default registerAs(
   (): Record<string, any> => ({
     env: process.env.NODE_ENV,
     port: parseInt(process.env.PORT),
-    localURL: process.env.LOCAL_URL,
   }),
 );
