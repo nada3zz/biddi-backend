@@ -30,8 +30,6 @@ import mongooseAutoPopulate from 'mongoose-autopopulate';
       useFactory: (config: ConfigService) => ({
         uri: config.get<string>('DATABASE_URL'),
         connectionFactory: (connection) => {
-          //connection.plugin(mongoosePaginate);
-          //connection.plugin(mongooseAutoPopulate);
           console.log(
             `App connected to MongoDB on ${config.get<string>('DATABASE_URL')}`,
             'MONGODB',

@@ -21,7 +21,7 @@ export class MongooseErrorFilter implements ExceptionFilter {
     private readonly reflector: Reflector,
     private readonly configService: ConfigService,
   ) {
-    this.env = this.configService.get<string>('env', 'production');
+    this.env = this.configService.get<string>('NODE_ENV', 'production');
   }
 
   catch(exception: MongoError, host: ArgumentsHost): void {

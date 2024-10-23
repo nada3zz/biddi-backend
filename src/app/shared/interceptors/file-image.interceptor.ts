@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { HttpArgumentsHost } from '@nestjs/common/interfaces';
 import { ConfigService } from '@nestjs/config';
-import { ENUM_FILE_IMAGE_MIME, ENUM_FILE_STATUS_CODE_ERROR } from '../enums/file.enum';
 
 @Injectable()
 export class FileImageInterceptor implements NestInterceptor {
@@ -36,7 +35,7 @@ export class FileImageInterceptor implements NestInterceptor {
 
     if (files.length > maxFiles) {
       throw new UnprocessableEntityException({
-        statusCode: ENUM_FILE_STATUS_CODE_ERROR.FILE_MAX_ERROR,
+        statusCode: 400,
         message: 'file.error.maxFiles',
       });
     }
@@ -49,7 +48,7 @@ export class FileImageInterceptor implements NestInterceptor {
   private async validateFile(file: Express.Multer.File): Promise<void> {
     if (!file) {
       throw new UnprocessableEntityException({
-        statusCode: ENUM_FILE_STATUS_CODE_ERROR.FILE_NEEDED_ERROR,
+        statusCode: 404,
         message: 'file.error.notFound',
       });
     }
@@ -59,20 +58,20 @@ export class FileImageInterceptor implements NestInterceptor {
 
     if (!this.isValidMimeType(mimetype)) {
       throw new UnsupportedMediaTypeException({
-        statusCode: ENUM_FILE_STATUS_CODE_ERROR.FILE_EXTENSION_ERROR,
+        statusCode: 400,
         message: 'file.error.mimeInvalid',
       });
     }
 
     if (size > maxSize) {
       throw new PayloadTooLargeException({
-        statusCode: ENUM_FILE_STATUS_CODE_ERROR.FILE_MAX_SIZE_ERROR,
+        statusCode: 400,
         message: 'file.error.maxSize',
       });
     }
   }
 
   private isValidMimeType(mimetype: string): boolean {
-    return Object.values(ENUM_FILE_IMAGE_MIME).includes(mimetype.toLowerCase() as ENUM_FILE_IMAGE_MIME);
+    return ['image/jpg', 'image/jpeg', 'image/png'].includes(mimetype.toLowerCase());
   }
 }
