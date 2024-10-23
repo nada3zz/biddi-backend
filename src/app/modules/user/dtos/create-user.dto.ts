@@ -39,7 +39,7 @@ export class CreateUserDto {
     description: 'User phone number',
     example: '+1 212-226-3126',
   })
-  @IsEmail()
+  @IsString()
   @IsNotEmpty()
   phone: string;
 
@@ -64,13 +64,4 @@ export class CreateUserDto {
   @IsNotEmpty()
   role: RoleTypeEnum;
 
-  @ApiProperty({
-    type: String,
-    required: false,
-    description: 'User address',
-    example: 'New York, USA',
-  })
-  @IsString()
-  @IsOptional()
-  address?: string;
 }

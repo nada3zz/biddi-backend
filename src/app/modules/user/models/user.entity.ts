@@ -7,19 +7,19 @@ import { RoleTypeEnum } from '../../../shared/enums/role-type.enum';
   versionKey: false,
 })
 export class User {
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, trim: true })
   firstName: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, trim: true })
   lastName: string;
 
-  @Prop({ type: String, required: true, unique: true })
+  @Prop({ type: String, required: true, unique: true, trim: true })
   email: string;
 
-  @Prop({ type: String, required: true, unique: true })
+  @Prop({ type: String, required: true, unique: true, trim: true })
   phone: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, trim: true })
   password: string;
 
   @Prop({ type: String, required: true, enum: Object.values(RoleTypeEnum) })
@@ -30,18 +30,6 @@ export class User {
 
   @Prop({ type: Boolean, default: false })
   isEmailVerified: boolean;
-
-  @Prop({ type: Boolean, default: false })
-  isDeleted: boolean;
-
-  @Prop({ type: String })
-  address?: string;
-
-  @Prop({ type: String})
-  avatar?: string
-
-  @Prop({ type: Types.ObjectId, ref: 'Cart', autopopulate: true })
-  carts: Types.ObjectId;
 
   @Prop({ type: Types.ObjectId, ref: 'Vendor', autopopulate: true })
   vendor: Types.ObjectId;

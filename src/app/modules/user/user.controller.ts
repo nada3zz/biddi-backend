@@ -37,7 +37,7 @@ export class UserController {
   }
 
   @Get('me')
-  @ApiOperation({ summary: 'Get User Details' })
+  @ApiOperation({ summary: 'Get Authenticated User Details' })
   @ApiOkResponse({
     description: 'Successfully fetched user details.',
   })
@@ -45,13 +45,25 @@ export class UserController {
     return this.service.getUserDetails(user._id);
   }
 
+
+
   @Delete('me')
-  @ApiOperation({ summary: 'Delete User Details' })
+  @ApiOperation({ summary: 'Delete Authenticated User Details' })
   @ApiOkResponse({
     description: 'Successfully deleted user details.',
   })
   async deleteUserDetails(user: any) {
     return this.service.deleteUserDetails(user._id);
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get User Details' })
+  @ApiOkResponse({
+    description: 'Successfully fetched user details.',
+  })
+  
+  async getUser( @Param('id') id: string) {
+    return this.service.getUserDetails(id);
   }
 
   @Put(':id')
