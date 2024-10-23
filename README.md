@@ -1,3 +1,25 @@
+Overview
+--------
+Welcome to the Biddi API project! This API is built using Nest and MongoDB and provides a set of features for managing an e-commerce platform.
+
+
+API Usage
+---------
+To get started with the API, follow these steps:
+
+1. Clone the repository:
+   git clone git@github.com:nada3zz/biddi-backend.git
+
+2. Install the dependencies:
+   npm install
+
+3. Add your own `.env` file with the necessary environment variables.
+
+4. Start the development server:
+   npm run start:dev
+
+5. Open http://localhost:5000/docs to view the API documentation in your browser.
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
