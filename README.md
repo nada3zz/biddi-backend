@@ -8,7 +8,7 @@ API Usage
 To get started with the API, follow these steps:
 
 1. Clone the repository:
-   git clone git@github.com:nada3zz/biddi-backend.git
+   git clone https://github.com/nada3zz/biddi-backend
 
 2. Install the dependencies:
    npm install
