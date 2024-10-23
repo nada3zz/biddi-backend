@@ -19,7 +19,7 @@ class Vendor {
   @Prop({ type: String })
   logo:string
 
-  @Prop({ type: String })
+  @Prop({ type: String, required: true })
   address:string
 
   @Prop({ type: String })
@@ -31,8 +31,6 @@ class Vendor {
   @Prop([{ type: Types.ObjectId, ref: 'Product', autopopulate: true }])
   products: Types.ObjectId[];
 
-  @Prop({ type: Types.ObjectId, ref: 'Location', autopopulate: true })
-  Location: Types.ObjectId;  ///
 }
 
 type VendorDocument = Vendor & Document;
