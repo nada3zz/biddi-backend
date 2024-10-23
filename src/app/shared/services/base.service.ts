@@ -2,6 +2,8 @@ import { Document, Types } from 'mongoose';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { IBaseRepository } from '../interfaces/i-base-repository.interface';
 import { IBaseService } from '../interfaces/i-base-service.interface';
+import { IPaginateOptions } from '../interfaces/i-paginate-options';
+
 
 export abstract class BaseService<
   T extends Document,
@@ -32,6 +34,13 @@ export abstract class BaseService<
 
   async find(filter: object): Promise<T[]> {
     return this.repository.find(filter);
+  }
+
+  async findPaginated(
+    filter: object,
+    paginateOptions: IPaginateOptions,
+  ): Promise<any> {
+    return this.repository.paginate(filter, paginateOptions);
   }
 
   async updateById(id: string | Types.ObjectId, update: object): Promise<T> {

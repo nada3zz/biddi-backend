@@ -1,6 +1,8 @@
 import { Document, FilterQuery, PaginateModel, Types, UpdateQuery } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { IBaseRepository } from '../interfaces/i-base-repository.interface';
+import { IPaginateOptions } from '../interfaces/i-paginate-options';
+import { IPaginatedInterface } from '../interfaces/i-paginate-result.interface';
 
 @Injectable()
 export class BaseRepository<T extends Document> implements IBaseRepository<T> {
@@ -56,6 +58,13 @@ export class BaseRepository<T extends Document> implements IBaseRepository<T> {
 
   async deleteMany(filter: FilterQuery<T>): Promise<any> {
     return this.model.deleteMany(filter);
+  }
+
+  async paginate(
+    filter: object,
+    paginateOptions: IPaginateOptions,
+  ): Promise<IPaginatedInterface<T>> {
+    return this.model.paginate(filter, paginateOptions);
   }
 
   async aggregate(pipeline: any[]): Promise<any> {
