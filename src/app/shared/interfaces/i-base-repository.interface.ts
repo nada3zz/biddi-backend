@@ -1,4 +1,4 @@
-import { Types } from 'mongoose';
+import { Types, DeleteResult } from 'mongoose';
 import { IPaginateOptions } from './i-paginate-options';
 import { IPaginatedInterface } from './i-paginate-result.interface';
 
@@ -11,7 +11,7 @@ export interface IBaseRepository<T> {
   updateOne(filter: object, update: Partial<T>): Promise<T | null>;
   updateMany(filter: object, update: Partial<T>): Promise<any>;
   deleteById(id: string | Types.ObjectId): Promise<T | null>;
-  deleteOne(filter: object): Promise<T | null>;
+  deleteOne(filter: object): Promise<DeleteResult>;
   deleteMany(filter: object): Promise<any>;
   paginate(
     filter: object,

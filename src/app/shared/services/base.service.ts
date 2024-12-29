@@ -1,4 +1,4 @@
-import { Document, Types } from 'mongoose';
+import { Document, Types, DeleteResult } from 'mongoose';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { IBaseRepository } from '../interfaces/i-base-repository.interface';
 import { IBaseService } from '../interfaces/i-base-service.interface';
@@ -75,7 +75,7 @@ export abstract class BaseService<
     return result;
   }
 
-  async deleteOne(filter: object): Promise<T> {
+  async deleteOne(filter: object): Promise<DeleteResult> {
     const result = await this.repository.deleteOne(filter);
     if (!result) {
       this.throwNotFound();

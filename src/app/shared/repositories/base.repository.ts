@@ -1,4 +1,4 @@
-import { Document, FilterQuery, PaginateModel, Types, UpdateQuery } from 'mongoose';
+import { Document, FilterQuery, PaginateModel, Types, UpdateQuery, DeleteResult } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { IBaseRepository } from '../interfaces/i-base-repository.interface';
 import { IPaginateOptions } from '../interfaces/i-paginate-options';
@@ -52,8 +52,8 @@ export class BaseRepository<T extends Document> implements IBaseRepository<T> {
     return this.model.findByIdAndDelete(_id)
   }
 
-  async deleteOne(filter: FilterQuery<T>): Promise<T | null> {
-    return this.model.findByIdAndDelete(filter);
+  async deleteOne(filter: FilterQuery<T>): Promise<DeleteResult> {
+    return this.model.deleteOne(filter);
   }
 
   async deleteMany(filter: FilterQuery<T>): Promise<any> {
